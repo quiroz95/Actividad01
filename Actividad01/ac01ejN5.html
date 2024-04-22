@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinación de Nombres y Apellidos</title>
+</head>
+<body>
+    <h2>Combinación de Nombres y Apellidos</h2>
+    <p>Introduce los nombres y apellidos separados por comas (,):</p>
+    <label for="nombres">Nombres:</label>
+    <input type="text" id="nombres">
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos">
+    <button onclick="combinar()">Combinar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function combinar() {
+            var nombresInput = document.getElementById("nombres").value;
+            var apellidosInput = document.getElementById("apellidos").value;
+
+            var nombres = nombresInput.split(",").map(nombre => nombre.trim());
+            var apellidos = apellidosInput.split(",").map(apellido => apellido.trim());
+
+            // Validar que ambos arrays no estén vacíos
+            if (nombres.length === 0 || apellidos.length === 0) {
+                document.getElementById("resultado").innerHTML = "<p>Error: Ambos campos deben tener al menos un nombre o apellido.</p>";
+                return;
+            }
+
+            var nombresFormateados = combinarNombres(nombres, apellidos);
+
+            // Mostrar resultados
+            var resultadoHTML = "<h3>Resultados:</h3><ul>";
+            nombresFormateados.forEach(nombre => {
+                resultadoHTML += "<li>" + nombre + "</li>";
+            });
+            resultadoHTML += "</ul>";
+            document.getElementById("resultado").innerHTML = resultadoHTML;
+        }
+
+        function combinarNombres(nombres, apellidos) {
+            var nombresFormateados = [];
+            for (var i = 0; i < Math.max(nombres.length, apellidos.length); i++) {
+                var nombreAleatorio = nombres[Math.floor(Math.random() * nombres.length)];
+                var apellidoAleatorio = apellidos[Math.floor(Math.random() * apellidos.length)];
+                var nombreCompleto = nombreAleatorio.charAt(0).toUpperCase() + nombreAleatorio.slice(1).toLowerCase();
+                var apellidoCompleto = apellidoAleatorio.charAt(0).toUpperCase() + apellidoAleatorio.slice(1).toLowerCase();
+                nombresFormateados.push(nombreCompleto + " " + apellidoCompleto);
+            }
+            return nombresFormateados;
+        }
+    </script>
+</body>
+</html>

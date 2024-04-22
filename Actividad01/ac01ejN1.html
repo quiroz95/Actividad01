@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC01EJ1</title>
+    <script src="js/ac01ej1.js"></script>
+    <style>
+        body {
+            background-color: #F7DC6F;
+        }
+    </style>
+</head>
+<body>
+    <div class="content" id="content_first">
+        <center><h1>BIENVENIDO(A)<h1></center>
+    </div><!--#content_first-->
+    <div class="content" id="content_second">
+        <p>Estas abriendo con Navegador Google</p>
+    </div><!--#content_first-->
+    <script>
+        let body = document.getElementsByTagName("body")[0];
+        //console.log(body.innerHTML);
+        //body.innerHTML="<p>Contenido Borrado de body</p>";
+        let elementos=document.getElementsByTagName("*");
+        console.log(elementos)
+        for(elemento of elementos){
+            if(elemento.id=="content_second")
+                elemento.innerHTML="<h2>Estas abriendo con Navegador Google<h2>";
+                elemento.removeAttribute("hidden");
+        }
+    </script>
+</body>
+</html>

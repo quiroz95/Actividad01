@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Letras y Vocales</title>
+</head>
+<body>
+    <h2>Contador de Letras y Vocales</h2>
+    <label for="frase">Introduce una frase:</label>
+    <input type="text" id="frase">
+    <button onclick="contar()">Contar</button>
+
+    <div id="resultados"></div>
+
+    <script>
+        function contar() {
+            var frase = document.getElementById("frase").value.toLowerCase(); // Convertir a minúsculas para evitar diferencias de mayúsculas y minúsculas
+            var contadorO = 0;
+            var contadorVocales = 0;
+            var contadorVocalesIndividuales = {
+                'a': 0,
+                'e': 0,
+                'i': 0,
+                'o': 0,
+                'u': 0
+            };
+
+            for (var i = 0; i < frase.length; i++) {
+                var caracter = frase.charAt(i);
+                if (caracter === 'o') {
+                    contadorO++;
+                }
+                if ('aeiou'.includes(caracter)) {
+                    contadorVocales++;
+                    contadorVocalesIndividuales[caracter]++;
+                }
+            }
+
+            var resultados = document.getElementById("resultados");
+            resultados.innerHTML = "<p>Veces que aparece la letra 'o': " + contadorO + "</p>";
+            resultados.innerHTML += "<p>Número total de vocales: " + contadorVocales + "</p>";
+            resultados.innerHTML += "<p>Cada vocal y su cantidad de apariciones:</p>";
+            resultados.innerHTML += "<ul>";
+            for (var vocal in contadorVocalesIndividuales) {
+                resultados.innerHTML += "<li>" + vocal + ": " + contadorVocalesIndividuales[vocal] + "</li>";
+            }
+            resultados.innerHTML += "</ul>";
+        }
+    </script>
+</body>
+</html>
